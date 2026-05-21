@@ -18,10 +18,24 @@ import { EXAMPLES } from "./data";
 // Using object destructuring
 
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState("components");
+  const [selectedTopic, setSelectedTopic] = useState("");
   function handleSelect(selectedButton) {
     setSelectedTopic(selectedButton);
     console.log(selectedTopic);
+  }
+
+  // Alternative 3
+  let tabContent = <p>Please select a topic</p>;
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h1>{EXAMPLES[selectedTopic].title}</h1>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
   }
 
   return (
@@ -58,13 +72,32 @@ function App() {
             <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
-          <div id="tab-content">
-            <h1>{EXAMPLES[selectedTopic].title}</h1>
-            <p>{EXAMPLES[selectedTopic].description}</p>
-            <pre>
-              <code>{EXAMPLES[selectedTopic].code}</code>
-            </pre>
-          </div>
+          {tabContent}
+
+          {/* Alternative 1 */}
+          {/* {!selectedTopic ? (
+            <p>Please select a topic</p>
+          ) : (
+            <div id="tab-content">
+              <h1>{EXAMPLES[selectedTopic].title}</h1>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          )} */}
+
+          {/* Alternative 2 */}
+          {/* {!selectedTopic && <p>Please select a topic</p>}
+          {selectedTopic && (
+            <div id="tab-content">
+              <h1>{EXAMPLES[selectedTopic].title}</h1>
+              <p>{EXAMPLES[selectedTopic].description}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          )} */}
         </section>
       </main>
     </div>
