@@ -3,6 +3,7 @@ import { CORE_CONCEPTS } from "./data";
 import Header from "./components/Header/Header";
 import CoreConcept from "./components/CoreConcept";
 import TabButton from "./components/TabButton";
+import { EXAMPLES } from "./data";
 // using props
 // function CoreConcept(props) {
 //   return (
@@ -17,7 +18,7 @@ import TabButton from "./components/TabButton";
 // Using object destructuring
 
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState("Please click a button");
+  const [selectedTopic, setSelectedTopic] = useState("components");
   function handleSelect(selectedButton) {
     setSelectedTopic(selectedButton);
     console.log(selectedTopic);
@@ -57,7 +58,13 @@ function App() {
             <TabButton onSelect={() => handleSelect("props")}>Props</TabButton>
             <TabButton onSelect={() => handleSelect("state")}>State</TabButton>
           </menu>
-          {selectedTopic}
+          <div id="tab-content">
+            <h1>{EXAMPLES[selectedTopic].title}</h1>
+            <p>{EXAMPLES[selectedTopic].description}</p>
+            <pre>
+              <code>{EXAMPLES[selectedTopic].code}</code>
+            </pre>
+          </div>
         </section>
       </main>
     </div>
