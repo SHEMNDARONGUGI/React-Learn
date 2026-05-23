@@ -45,7 +45,10 @@ function App() {
         <section id="core-concepts">
           <h2>Core Concepts</h2>
           <ul>
-            <CoreConcept
+            {CORE_CONCEPTS.map((conceptItem) => (
+              <CoreConcept key={conceptItem.title} {...conceptItem} />
+            ))}
+            {/* <CoreConcept
               title={CORE_CONCEPTS[0].title}
               description={CORE_CONCEPTS[0].description}
               image={CORE_CONCEPTS[0].image}
@@ -55,9 +58,9 @@ function App() {
               description={CORE_CONCEPTS[1].description}
               image={CORE_CONCEPTS[1].image}
             />
-            {/* using spread operators to get object details from the array  */}
+            using spread operators to get object details from the array  
             <CoreConcept {...CORE_CONCEPTS[2]} />
-            <CoreConcept {...CORE_CONCEPTS[3]} />
+            <CoreConcept {...CORE_CONCEPTS[3]} /> */}
           </ul>
         </section>
         <h2>Time to get started!</h2>
